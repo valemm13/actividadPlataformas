@@ -20,8 +20,6 @@ Centralizar toda la información de entrenamiento de un usuario en una sola plat
 - **ORM**: TypeORM
 - **Base de datos**: SQLite (escalable a PostgreSQL/MySQL)
 - **Lenguaje**: TypeScript
-- **Validaciones**: class-validator, class-transformer
-- **Configuración**: @nestjs/config
 
 ---
 
@@ -169,15 +167,7 @@ nest new . --package-manager npm
 npm install @nestjs/typeorm typeorm sqlite3 class-validator class-transformer @nestjs/config
 ```
 
-#### **1.3 Configurar Base de Datos Escalable** ✅
-- **Archivo `.env`** creado con configuración escalable
-- **Archivo `.env.example`** como plantilla
-- **DatabaseModule** configurado para soportar múltiples tipos de BD:
-  - SQLite (por defecto)
-  - PostgreSQL, MySQL, MariaDB (preparado para migración futura)
-- Configuración dinámica basada en variables de entorno
-
-#### **1.4 Configurar Validaciones Globales** ✅
+#### **1.3 Configurar Validaciones Globales** ✅
 ```typescript
 // main.ts - Configuración de ValidationPipe
 app.useGlobalPipes(
@@ -189,21 +179,26 @@ app.useGlobalPipes(
 );
 ```
 
-#### **1.5 Limpiar Testing** ✅
+#### **1.4 Limpiar Testing** ✅
 - Eliminados todos los archivos de test
 - Removidas dependencias de testing del `package.json`
 - Limpiados scripts de testing
 - Eliminada configuración de Jest
 
-#### **1.6 Configurar Variables de Entorno** ✅
+#### **1.7 Configurar Variables de Entorno** ✅
 ```bash
-# .env
+# Crear archivo .env desde la plantilla
+cp .env.example .env
+
+# El archivo .env debe contener:
 DB_TYPE=sqlite
 DB_DATABASE=./fitness.db
 DB_SYNCHRONIZE=true
 DB_LOGGING=true
 PORT=3001
 ```
+
+> **📌 Importante**: El archivo `.env` es el que lee la aplicación en tiempo de ejecución. El `.env.example` es solo una plantilla para otros desarrolladores.
 
 #### **📁 Estructura Final del Proyecto:**
 ```
@@ -306,9 +301,7 @@ src/
 │   │   └── exercises.service.ts
 │   └── exercises.module.ts
 ├── database/
-│   ├── database.module.ts
-│   └── seeds/
-│       └── initial-data.seed.ts
+│   └── database.module.ts
 └── app.module.ts
 ```
 
@@ -349,6 +342,18 @@ src/
 
 ## 🚀 Comandos de Desarrollo
 
+### Setup Inicial
+```bash
+# 1. Instalar dependencias
+npm install
+
+# 2. Crear archivo de variables de entorno
+cp .env.example .env
+
+# 3. Verificar que el archivo .env contiene las variables correctas
+cat .env
+```
+
 ### Instalación
 ```bash
 npm install
@@ -382,6 +387,16 @@ npm run format
 
 El proyecto está configurado para ser escalable entre diferentes tipos de base de datos:
 
+#### **Crear archivo .env**
+```bash
+# Copiar la plantilla
+cp .env.example .env
+
+# Editar con tus valores específicos
+nano .env  # o usar tu editor preferido
+```
+
+#### **Contenido del archivo .env**
 ```bash
 # .env
 DB_TYPE=sqlite                    # Tipo de BD (sqlite, postgres, mysql, mariadb)
@@ -390,6 +405,11 @@ DB_SYNCHRONIZE=true              # Crear tablas automáticamente (solo desarroll
 DB_LOGGING=true                  # Ver consultas SQL en consola
 PORT=3001                        # Puerto de la aplicación
 ```
+
+> **📌 Importante**: 
+> - El archivo `.env` es el que lee la aplicación en tiempo de ejecución
+> - El archivo `.env.example` es solo una plantilla para otros desarrolladores
+> - Nunca commitees el archivo `.env` al repositorio (está en `.gitignore`)
 
 ### Migración a PostgreSQL/MySQL
 
