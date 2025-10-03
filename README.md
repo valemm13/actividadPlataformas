@@ -1,5 +1,12 @@
 # 🏋️‍♂️ Fitness App Backend
 
+## Equipo 
+
+Nicolle Stheyzy Ureña Garcia
+Hanna Lozano Orozco 
+Maria Isabel Solis Gonzalez 
+Valerie Marmolejo Molina 
+
 ## 📖 Descripción del Proyecto
 
 Este es el backend de una aplicación web completa que funciona como un **asistente personal de fitness**. La aplicación permite a los usuarios llevar un control detallado de sus entrenamientos y seguimiento de progreso físico.
