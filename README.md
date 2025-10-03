@@ -3,9 +3,13 @@
 ## Equipo 
 
 Nicolle Stheyzy Ureña Garcia
+
 Hanna Lozano Orozco 
+
 Maria Isabel Solis Gonzalez 
+
 Valerie Marmolejo Molina 
+
 
 ## 📖 Descripción del Proyecto
 
